@@ -1,0 +1,117 @@
+body, html {
+  height: 100%;
+  font-family: 'Lexend Deca', sans-serif;
+  margin: 0px;
+}
+
+.parallax1 {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/img/background1.jpg");
+  /* height: 100%; */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/img/background2.jpg");
+  /* height: 100%; */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax3 {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("/img/background3.jpg");
+  /* height: 100%; */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  padding-left: 20px;
+  opacity: 0.8;
+}
+
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background: #ccc;
+}
+
+.progress-bar {
+  height: 4px;
+  background: #4c5baf;
+  width: 0%;
+}
+
+#sidebar { 
+  width: 250px; 
+  height: 350px;
+  float: right; 
+  overflow-x: hidden;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#name {
+  font-size: 15pt;
+}
+
+.profilePic{
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 90%;
+  height: 90%;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+  border-radius: 8px;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 8px;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color:#1F497D;
+  color: #c6e5f1;
+  border: 1px solid #447dc4;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #447dc4;
+  color: #c6e5f1;
+  transform: rotateY(180deg);
+  border: 1px solid #1F497D;
+}
