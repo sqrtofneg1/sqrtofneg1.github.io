@@ -4,9 +4,17 @@ body, html {
   margin: 0px;
 }
 
+footer{
+  color: #c6e5f1;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 .parallax1 {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/img/background1.jpg");
-  /* height: 100%; */
+  /* height: 100%; Kind of fixes the mobile thingy?*/
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,7 +23,7 @@ body, html {
 
 .parallax2 {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/img/background2.jpg");
-  /* height: 100%; */
+  height: 100vh;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -34,6 +42,23 @@ body, html {
 .navbar {
   padding-left: 20px;
   opacity: 0.8;
+}
+
+.jumbotron {
+  background-color: rgb(198, 229, 241, 0.6);
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.jumbotron p{
+  color: #1F497D;
+}
+
+.jumbotron h1{
+  color: #447dc4;
+  font-weight: bold;
+  -webkit-text-stroke-width: 0.1px;
+  -webkit-text-stroke-color: #1F497D;
 }
 
 .progress-container {
@@ -67,12 +92,12 @@ body, html {
   width: 100%;
 }
 
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+/* The flip card container*/
 .flip-card {
   background-color: transparent;
   width: 90%;
   height: 90%;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px;
 }
 
 /* This container is needed to position the front and back side */
