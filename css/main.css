@@ -4,12 +4,42 @@ body, html {
   margin: 0px;
 }
 
+a{
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a:hover{
+  color: inherit;
+  text-decoration: inherit;
+}
+
 footer{
   color: #c6e5f1;
   text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.flexcontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-around;
+}
+
+.codingFont {
+  font-family: 'Press Start 2P', serif;
+  font-size: 28pt;
+  margin-top: 10px;
+}
+
+.musicFont {
+  font-family: 'Dancing Script', cursive;
+  font-size: 40pt;
+  font-weight: bold;
+  padding: 0;
 }
 
 .parallax1 {
