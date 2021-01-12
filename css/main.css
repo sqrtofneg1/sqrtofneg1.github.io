@@ -4,6 +4,16 @@ body, html {
   margin: 0px;
 }
 
+h2 {
+  display: inline;
+  color: #0a3569;
+  font-weight: bold;
+}
+
+img{
+  border-radius: 5px;
+}
+
 a{
   color: inherit;
   text-decoration: inherit;
@@ -15,11 +25,12 @@ a:hover{
 }
 
 footer{
-  color: #c6e5f1;
+  color: #d9f6ff;
   text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;
+  background-color: #1F497D;
 }
 
 .flexcontainer {
@@ -44,7 +55,7 @@ footer{
 
 .parallax1 {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/img/background1.jpg");
-  /* height: 100%; Kind of fixes the mobile thingy?*/
+  height: auto;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -62,7 +73,7 @@ footer{
 
 .parallax3 {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("/img/background3.jpg");
-  /* height: 100%; */
+  height: auto;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -104,8 +115,8 @@ footer{
 }
 
 #sidebar { 
-  width: 250px; 
-  height: 350px;
+  width: 230px; 
+  height: 320px;
   float: right; 
   overflow-x: hidden;
   padding: 20px;
@@ -118,15 +129,64 @@ footer{
 
 .profilePic{
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 15px;
   width: 100%;
 }
 
-/* The flip card container*/
+#mainbody {
+  margin-right: 240px;
+}
+
+.project-container{
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #20968a;
+  color: #d9f6ff;
+  border: 2px solid #236eac;
+}
+
+.img-left-container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: auto;
+}
+.img-left-img {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  margin: 5px;
+}
+.img-left-text {
+  grid-column: 2 / 2;
+  grid-row: 1 / 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.img-right-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto;
+}
+.img-right-img {
+  grid-column: 2 / 2;
+  grid-row: 1 / 1;
+  margin: 5px;
+}
+.img-right-text {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* 
+The flip card container
+*/
 .flip-card {
   background-color: transparent;
-  width: 90%;
-  height: 90%;
+  width: 98%;
+  height: 98%;
   perspective: 1000px;
 }
 
@@ -159,14 +219,14 @@ footer{
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
   background-color:#1F497D;
-  color: #c6e5f1;
-  border: 1px solid #447dc4;
+  color: #d9f6ff;
+  border: 1px solid #236eac;
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: #447dc4;
-  color: #c6e5f1;
+  background-color: #236eac;
+  color: #d9f6ff;
   transform: rotateY(180deg);
   border: 1px solid #1F497D;
 }
