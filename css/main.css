@@ -73,7 +73,7 @@ footer{
 
 .parallax3 {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("/img/background3.jpg");
-  height: 100vh;
+  height: auto;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
