@@ -136,6 +136,11 @@ footer{
   margin-right: 240px;
 }
 
+.btn-group {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
 .project-container{
   padding: 10px;
   margin: 20px;

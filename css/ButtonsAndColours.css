@@ -1,0 +1,102 @@
+/*SPOTIFY*/
+.btn-primary {
+  color: #1DB954;
+  background-color: #ffffff;
+  border-color: #119740;
+}
+.btn-primary:hover {
+  color: #e3f9ff;
+  background-color: #1DB954;
+  border-color: #119740;
+}
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(28, 165, 28, 0.5);
+}
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #e3f9ff;
+  background-color: #1DB954;
+  border-color: #119740;
+}
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(28, 165, 28, 0.5);
+}
+
+
+/*YOUTUBE*/
+.btn-secondary {
+  color: #ff0000;
+  background-color: #ffffff;
+  border-color: #c90000;
+}
+.btn-secondary:hover {
+  color: #e3f9ff;
+  background-color: #ff0000;
+  border-color: #c90000;
+}
+.btn-secondary:focus, .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(190, 0, 0, 0.5);
+}
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #e3f9ff;
+  background-color: #ff0000;
+  border-color: #c90000;
+}
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(190, 0, 0, 0.5);
+}
+
+
+/*SOUNDCLOUD*/
+.btn-info {
+  color: #ff7700;
+  background-color: #ffffff;
+  border-color: #da6600;
+}
+.btn-info:hover {
+  color: #e3f9ff;
+  background-color: #ff7700;
+  border-color: #da6600;
+}
+.btn-info:focus, .btn-info.focus {
+  box-shadow: 0 0 0 0.2rem rgba(211, 112, 0, 0.5);
+}
+.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+.show > .btn-info.dropdown-toggle {
+  color: #e3f9ff;
+  background-color: #ff7700;
+  border-color: #da6600;
+}
+.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(211, 112, 0, 0.5);
+}
+
+
+/*BANDCAMP*/
+.btn-warning {
+  color: #629aa9;
+  background-color: #ffffff;
+  border-color: #438a9e;
+}
+.btn-warning:hover {
+  color: #e3f9ff;
+  background-color: #629aa9;
+  border-color: #438a9e;
+}
+.btn-warning:focus, .btn-warning.focus {
+  box-shadow: 0 0 0 0.2rem rgba(54, 132, 153, 0.5);
+}
+.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
+.show > .btn-warning.dropdown-toggle {
+  color: #e3f9ff;
+  background-color: #629aa9;
+  border-color: #438a9e;
+}
+.btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled).active:focus,
+.show > .btn-warning.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(54, 132, 153, 0.5);
+}

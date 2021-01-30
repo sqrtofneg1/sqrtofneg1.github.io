@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="./css/main.css" />
+  <link rel="stylesheet" type="text/css" href="./css/ButtonsAndColours.css" />
 
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/26da0e4274.js" crossorigin="anonymous"></script>
@@ -66,6 +67,23 @@
 
   <div class="parallax3">
     <div id="mainbody">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary active">
+          <input type="radio" name="options" id="spotify" autocomplete="off" checked><i class="fab fa-spotify"></i>
+          Spotify
+        </label>
+        <label class="btn btn-secondary youtube-colours">
+          <input type="radio" name="options" id="youtube" autocomplete="off"><i class="fab fa-youtube"></i></a> YouTube
+        </label>
+        <label class="btn btn-info soundcloud-colours">
+          <input type="radio" name="options" id="soundcloud" autocomplete="off"><i class="fab fa-soundcloud"></i>
+          SoundCloud
+        </label>
+        <label class="btn btn-warning bandcamp-colours">
+          <input type="radio" name="options" id="bandcamp" autocomplete="off"><i class="fab fa-bandcamp"></i> Bandcamp
+        </label>
+      </div>
+
       <br />
       <div class="project-container img-right-container">
         <div class="img-right-img">
@@ -74,8 +92,10 @@
         <div class="img-right-text">
           <h2>Empty Streets</h2> <span style="float: right">2020</span>
           <hr class="my-2">
-          <iframe src="https://open.spotify.com/embed/album/7pLvJgMVgTYf8HfPJ54tyx" width="100%" height="350"
-            frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <span id="Empty_Streets">
+            <iframe src="https://open.spotify.com/embed/album/7pLvJgMVgTYf8HfPJ54tyx" width="100%" height="350"
+              frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </span>
         </div>
       </div>
 
@@ -87,8 +107,10 @@
         <div class="img-left-text">
           <h2>Please Do Not Listen to This</h2> <span style="float: right">2019</span>
           <hr class="my-2">
-          <iframe src="https://open.spotify.com/embed/album/5EDd5d9SjUMK9cjgJIfQFl" width="100%" height="350"
-            frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <span id="PDNLTT">
+            <iframe src="https://open.spotify.com/embed/album/5EDd5d9SjUMK9cjgJIfQFl" width="100%" height="350"
+              frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </span>
           </p>
         </div>
       </div>
@@ -101,8 +123,10 @@
         <div class="img-right-text">
           <h2>Synecdoche</h2> <span style="float: right">2018</span>
           <hr class="my-2">
-          <iframe src="https://open.spotify.com/embed/album/4jWT0wYGCOgDPVfb6God5y" width="100%" height="350"
-            frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <span id="Synechdoche">
+            <iframe src="https://open.spotify.com/embed/album/4jWT0wYGCOgDPVfb6God5y" width="100%" height="350"
+              frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </span>
         </div>
       </div>
       <br />
@@ -127,6 +151,7 @@
   <!-- JavaScript -->
   <script src="./js/scroll-indicator.js"></script>
   <script src="./js/sidebar.js"></script>
+  <script src="./js/music.js"></script>
 </body>
 
 </html>
