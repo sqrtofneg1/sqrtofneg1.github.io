@@ -14,9 +14,9 @@ let soundcloudArray = [`<iframe width="100%" height="300" scrolling="no" framebo
                        `<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/819426393&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>`,
                        `<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/240774079&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>`]
 
-let bandcampArray = [`<iframe style="border: 0; width: 100%; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=1277133147/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/" seamless><a href="https://sqrtofneg1.bandcamp.com/album/empty-streets">Empty Streets by Sqrtofneg1</a></iframe>`,
-                     `<iframe style="border: 0; width: 100%; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=1048516245/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/" seamless><a href="https://sqrtofneg1.bandcamp.com/album/please-do-not-listen-to-this">Please Do Not Listen To This by Sqrtofneg1</a></iframe>`,
-                     `<iframe style="border: 0; width: 100%; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=3403142029/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/" seamless><a href="https://sqrtofneg1.bandcamp.com/album/synecdoche">Synecdoche by Sqrtofneg1</a></iframe>`]
+let bandcampArray = [`<iframe style="border: 0; width: 100%; height: 100%;" src="https://bandcamp.com/EmbeddedPlayer/album=1277133147/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/" seamless><a href="https://sqrtofneg1.bandcamp.com/album/empty-streets">Empty Streets by Sqrtofneg1</a></iframe>`,
+                     `<iframe style="border: 0; width: 100%; height: 100%;" src="https://bandcamp.com/EmbeddedPlayer/album=1048516245/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/" seamless><a href="https://sqrtofneg1.bandcamp.com/album/please-do-not-listen-to-this">Please Do Not Listen To This by Sqrtofneg1</a></iframe>`,
+                     `<iframe style="border: 0; width: 100%; height: 100%;" src="https://bandcamp.com/EmbeddedPlayer/album=3403142029/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/" seamless><a href="https://sqrtofneg1.bandcamp.com/album/synecdoche">Synecdoche by Sqrtofneg1</a></iframe>`]
 
 $(document).ready(function () {
   $(".btn-primary").click(function() {
@@ -25,6 +25,12 @@ $(document).ready(function () {
         $("#" + spanIdArray[x]).html(spotifyArray[x]);
       };
     };
+    $(".btn-secondary").removeClass("active");
+    $(".btn-secondary").prop("checked", false);
+    $(".btn-info").removeClass("active");
+    $(".btn-info").prop("checked", false);
+    $(".btn-warning").removeClass("active");
+    $(".btn-warning").prop("checked", false);
   });
 
   $(".btn-secondary").click(function() {
@@ -33,6 +39,12 @@ $(document).ready(function () {
         $("#" + spanIdArray[x]).html(youtubeArray[x]);
       };
     };
+    $(".btn-primary").removeClass("active");
+    $(".btn-primary").prop("checked", false);
+    $(".btn-info").removeClass("active");
+    $(".btn-info").prop("checked", false);
+    $(".btn-warning").removeClass("active");
+    $(".btn-warning").prop("checked", false);
   });
 
   $(".btn-info").click(function() {
@@ -41,6 +53,12 @@ $(document).ready(function () {
         $("#" + spanIdArray[x]).html(soundcloudArray[x]);
       };
     };
+    $(".btn-primary").removeClass("active");
+    $(".btn-primary").prop("checked", false);
+    $(".btn-secondary").removeClass("active");
+    $(".btn-secondary").prop("checked", false);
+    $(".btn-warning").removeClass("active");
+    $(".btn-warning").prop("checked", false);
   });
 
   $(".btn-warning").click(function() {
@@ -49,5 +67,11 @@ $(document).ready(function () {
         $("#" + spanIdArray[x]).html(bandcampArray[x]);
       };
     };
+    $(".btn-primary").removeClass("active");
+    $(".btn-primary").prop("checked", false);
+    $(".btn-secondary").removeClass("active");
+    $(".btn-secondary").prop("checked", false);
+    $(".btn-info").removeClass("active");
+    $(".btn-info").prop("checked", false);
   });
 });
