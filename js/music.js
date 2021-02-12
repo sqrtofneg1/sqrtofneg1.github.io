@@ -4,7 +4,7 @@ let spanIdArray = ['Empty_Streets',
 
 let spotifyArray = [`<iframe src="https://open.spotify.com/embed/album/7pLvJgMVgTYf8HfPJ54tyx" width="100%" height="350" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`,
                     `<iframe src="https://open.spotify.com/embed/album/5EDd5d9SjUMK9cjgJIfQFl" width="100%" height="350" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`,
-                    `<iframe src="https://open.spotify.com/embed/album/4jWT0wYGCOgDPVfb6God5y" width="100%" height="350" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>` ]
+                    `<iframe src="https://open.spotify.com/embed/album/4jWT0wYGCOgDPVfb6God5y" width="100%" height="390" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`]
 
 let youtubeArray = [`<iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_kreCELrYHqiCWjataY-uLHArtqg4egF6o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
                     `<iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_kZKtLU8311GVIn-5JynU4u-W6mlEAM1Ig" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
