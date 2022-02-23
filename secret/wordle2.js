@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let guessedWordCount = 0;
 
-  let word = "alice";
+  let word = "sowon";
 
   createSquares();
   addKeyboardClicks();
