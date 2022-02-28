@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateGuessedLetters(letter) {
-    console.log("here!");
     const currentWordArray = getCurrentWordArray();
     
     if (currentWordArray && currentWordArray.length < 5) {
@@ -127,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function createSquares() {
     const gameBoard = document.getElementById("board");
     
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 20; i++) {
       let square = document.createElement("div");
       square.classList.add("square");
       square.classList.add("animate__animated");
@@ -175,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1500)
     }
     
-    if (guessedWords.length >= 6) {
+    if (guessedWords.length >= 4) {
       setTimeout(() => {
         window.alert("Sorry, you have no more guesses left!");
       }, 1500)
