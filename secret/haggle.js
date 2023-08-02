@@ -16,9 +16,18 @@ $(document).ready(function() {
                     </svg>`
                    ]
 
+  let allPlayers = []
+
   $("#addPlayerButton").click(function() {
     clearForm();
     $('#exampleModal').modal('show')
+  });
+
+  $("#confirmAddPlayer").click(function () {
+    if (addPlayer()) {
+      $('#exampleModal').modal('hide');
+      clearForm();
+    }
   });
 
   $(".close").click(function() {
@@ -53,11 +62,52 @@ $(document).ready(function() {
  
     $('#cardSelect').append(cardString);
   }
+
+  function addPlayer() {
+    if($('.cardSelected').length == 5 || confirm("Player does not have 5 cards. Continue?")) {
+      let cards = [];
+      $('.cardSelected').each(function(index, element) {
+        if(element.id == "Joker") {
+          cards.push(new Card());
+        } else {
+          cards.push(new Card(element.id[0], element.id[1]))
+        }
+      })
+      let hand = new Hand(cards);
+      let player = new Player(hand, $('#addPlayer_Name').val);
+      allPlayers.push(player);
+      console.log(player);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function updateStandings() {
+    sortPlayers();
+    $('#standings').empty();
+    allPlayers.forEach(player => {
+      $('#standings').append(player.getPlayerCard());
+    })
+  }
+
+  function sortPlayers() {
+    allPlayers.sort((a, b) => (a.getTotalPoints() > b.getTotalPoints()) ? 1 : (a.getTotalPoints() == b.getTotalPoints()) ? ((a.name > b.name) ? 1 : -1) : -1);
+  }
   
-  function Card(suit, cardValue) {
-    this.suit = suit;
+  function Card(cardValue = null, suit = null) {
     this.cardValue = cardValue;
+    this.suit = suit;
     this.points = 0;
+  }
+
+  Card.prototype.getHtmlString = function() {
+    if(this.cardValue == null && this.suit == null) {
+      return `<span id="Joker" class="cardSelected">Jkr</span>`
+    } else {
+      let icon = suitIcons[allCardSuits.indexOf(this.suit)]
+      return `<span id="${this.cardValue}${this.suit}" class="cardUnselected">${this.cardValue} ${icon}</span>`
+    }
   }
   
   function Hand(cards) {
@@ -65,7 +115,7 @@ $(document).ready(function() {
     this.bonusPoints = 0;
   }
   
-  Hand.prototype.getTotalPoints = function(){
+  Hand.prototype.getTotalPoints = function() {
     let baseHandValue = 0;
     this.cards.forEach(card => {
       baseHandValue += card.cardValue;
@@ -73,5 +123,17 @@ $(document).ready(function() {
     return this.bonusPoints + baseHandValue;
   }
 
+  function Player(hand, name) {
+    this.hand = hand;
+    this.name = name;
+  }
+
+  Player.prototype.getTotalPoints = function() {
+    return this.hand.getTotalPoints();
+  }
+
+  Player.prototype.getPlayerCard = function() {
+    return `<div class="playerCard"></div>`
+  }
 
 });
