@@ -27,6 +27,8 @@ $(document).ready(function() {
     if (addPlayer()) {
       $('#exampleModal').modal('hide');
       clearForm();
+      calculateScore(allPlayers[allPlayers.length - 1]);
+      updateStandings();
     }
   });
 
@@ -70,11 +72,16 @@ $(document).ready(function() {
         if(element.id == "Joker") {
           cards.push(new Card());
         } else {
-          cards.push(new Card(element.id[0], element.id[1]))
+          if(element.id.toString().length == 3) {
+            let cardIdString = element.id.toString();
+            cards.push(new Card(cardIdString.substr(0, 2), element.id[2]))
+          } else {
+            cards.push(new Card(element.id[0], element.id[1]))
+          }
         }
       })
       let hand = new Hand(cards);
-      let player = new Player(hand, $('#addPlayer_Name').val);
+      let player = new Player(hand, $('#addPlayer_Name').val());
       allPlayers.push(player);
       console.log(player);
       return true;
@@ -83,11 +90,20 @@ $(document).ready(function() {
     }
   }
 
+  function calculateScore(player) {
+    
+  }
+
+  function getStandingsHeader() {
+    return `<div class="playerCard"><h4>Rank</h4><h4>Name</h4><h4>Hand</h4><h4>Base Pts</h4><h4>Bonus Pts</h4><h4>Total Pts</h4></div>`
+  }
+
   function updateStandings() {
     sortPlayers();
     $('#standings').empty();
+    $('#standings').append(getStandingsHeader());
     allPlayers.forEach(player => {
-      $('#standings').append(player.getPlayerCard());
+      $('#standings').append(player.getPlayerCard(allPlayers.indexOf(player)));
     })
   }
 
@@ -99,14 +115,15 @@ $(document).ready(function() {
     this.cardValue = cardValue;
     this.suit = suit;
     this.points = 0;
+    this.rules = [];
   }
 
   Card.prototype.getHtmlString = function() {
     if(this.cardValue == null && this.suit == null) {
-      return `<span id="Joker" class="cardSelected">Jkr</span>`
+      return `<span id="Joker" class="cardStandings" title="${this.points} pts. Rules: ${this.rules}">Jkr</span>`
     } else {
       let icon = suitIcons[allCardSuits.indexOf(this.suit)]
-      return `<span id="${this.cardValue}${this.suit}" class="cardUnselected">${this.cardValue} ${icon}</span>`
+      return `<span id="${this.cardValue}${this.suit}" class="cardStandings" title="${this.points} pts. Rules: ${this.rules}">${this.cardValue} ${icon}</span>`
     }
   }
   
@@ -115,25 +132,34 @@ $(document).ready(function() {
     this.bonusPoints = 0;
   }
   
-  Hand.prototype.getTotalPoints = function() {
+  Hand.prototype.getBasePoints = function() {
     let baseHandValue = 0;
     this.cards.forEach(card => {
-      baseHandValue += card.cardValue;
+      baseHandValue += card.points;
     });
-    return this.bonusPoints + baseHandValue;
+    return baseHandValue;
   }
 
-  function Player(hand, name) {
+  Hand.prototype.getTotalPoints = function() {
+    return this.bonusPoints + this.getBasePoints();
+  }
+
+  function Player(hand, playerName) {
     this.hand = hand;
-    this.name = name;
+    this.playerName = playerName;
   }
 
   Player.prototype.getTotalPoints = function() {
     return this.hand.getTotalPoints();
   }
 
-  Player.prototype.getPlayerCard = function() {
-    return `<div class="playerCard"></div>`
+  Player.prototype.getPlayerCard = function(index) {
+    let htmlString = `<div class="playerCard"><div class"playerRank">${index + 1}</div><div class="playerName">${this.playerName}</div><div class ="playerCards">`;
+    this.hand.cards.forEach(card => {
+      htmlString += card.getHtmlString();
+    });
+    htmlString += `</div><div class="playerBasePoints">${this.hand.getBasePoints()}</div><div class="playerBonusPoints">${this.hand.bonusPoints}</div><div class="playerTotalPoints">${this.hand.getTotalPoints()}</div></div>`
+    return htmlString;
   }
 
 });
