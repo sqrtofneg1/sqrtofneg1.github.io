@@ -91,7 +91,253 @@ $(document).ready(function() {
   }
 
   function calculateScore(player) {
+
+    const valueOccurrences = player.hand.cardValues.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
+
+    const suitOccurrences = player.hand.cardSuits.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
     
+    //rule 4 (nothing to do with points)
+
+    //rule 6 (nothing to do with points)
+    
+    //rule 8:
+    let faceCardValues = ["A", "K", "Q", "J"];
+    let numberCardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    for(i = 0; i < player.hand.cardValues.length; i++) {
+      if(faceCardValues.includes(player.hand.cardValues[i])) {
+        player.hand.cards[i].points = 10;
+        player.hand.cards[i].rules.push(8);
+      }
+    }
+
+    //rule 9 (nothing to do with points)
+
+    //rule 10:
+    if (valueOccurrences.values().includes(4)) {
+      player.hand.bonusPoints += 25;
+      player.hand.bonusPointsRules.push(10);
+    }
+
+    //rule 12:
+    for(i = 0; i < player.hand.cardValues.length; i++) {
+      if(player.hand.cardValues[i] == "Jkr") {
+        player.hand.cards[i].points = 0;
+        player.hand.cards[i].rules.push(12);
+      }
+    }
+
+    //rule 14:
+    let blackCount = suitOccurrences["C"] ? suitOccurrences["C"] : 0 + suitOccurrences["S"] ? suitOccurrences["S"] : 0;
+    let redCount = suitOccurrences["D"] ? suitOccurrences["D"] : 0 + suitOccurrences["H"] ? suitOccurrences["H"] : 0;
+    if(blackCount == redCount) {
+      player.hand.bonusPoints += 10;
+      player.hand.bonusPointsRules.push(14);
+    }
+
+    //rule 15:
+    if(valueOccurrences.values().includes(2)) {
+      for(i = 0; i < player.hand.cards.length; i++) {
+        if(player.hand.cardValues[i] == "2" && player.hand.cardSuits[i] == "D") {
+          player.hand.cards[i].points = 7;
+          player.hand.cards[i].rules.push(15);
+        }
+      }
+    }
+
+    //rule 16:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardValues[i] == "J") {
+        player.hand.cards[i].points = 4;
+        player.hand.cards[i].rules.push(16);
+      }
+    }
+
+    //rule 18:
+    if(player.hand.cardValues.length == 4) {
+      player.hand.bonusPoints += 10;
+      player.hand.bonusPointsRules.push(18);
+    }
+
+    //rule 20:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardSuits[i] == "C") {
+        if(numberCardValues.includes(player.hand.cardValues[i])) {
+          player.hand.cards[i].points = parseInt(player.hand.cardValues[i]);
+          player.hand.cards[i].rules.push(20);
+        }
+      }
+    }
+
+    //rule 21:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardSuits[i] == "H") {
+        if(numberCardValues.includes(player.hand.cardValues[i])) {
+          player.hand.cards[i].points = parseInt(player.hand.cardValues[i]) - 5;
+          player.hand.cards[i].rules.push(21);
+        }
+      }
+    }
+
+    //rule 22:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardSuits[i] == "D") {
+        if(numberCardValues.includes(player.hand.cardValues[i])) {
+          player.hand.cards[i].points = 7;
+          player.hand.cards[i].rules.push(22);
+        }
+      }
+    }
+
+    //rule 24:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardSuits[i] == "S") {
+        if(numberCardValues.includes(player.hand.cardValues[i])) {
+          player.hand.cards[i].points = Math.abs(12 - parseInt(player.hand.cardValues[i]));
+          player.hand.cards[i].rules.push(24);
+        }
+      }
+    }
+
+    //rule 25:
+    if(suitOccurrences["H"] == 2 || suitOccurrences["H"] == 4) {
+      for(i = 0; i < player.hand.cards.length; i++) {
+        if(player.hand.cardSuits[i] == "H") {
+          if(numberCardValues.includes(player.hand.cardValues[i])) {
+            player.hand.cards[i].points = player.hand.cards[i].points * 2;
+            player.hand.cards[i].rules.push(25);
+          }
+        }
+      }
+    }
+
+    //rule 26:
+    if(suitOccurrences["C"] == 3) {
+      for(i = 0; i < player.hand.cards.length; i++) {
+        if(player.hand.cardSuits[i] == "C") {
+          if(numberCardValues.includes(player.hand.cardValues[i])) {
+            player.hand.cards[i].points = player.hand.cards[i].points * 2;
+            player.hand.cards[i].rules.push(26);
+          }
+        }
+      }
+    }
+
+    //rule 27:
+    if(suitOccurrences["S"] == 1) {
+      player.hand.bonusPoints += 3;
+      player.hand.bonusPointsRules.push(27);
+    }
+
+    //rule 28:
+    if(valueOccurrences.values().includes(3)) {
+      player.hand.bonusPoints += 10;
+      player.hand.bonusPointsRules.push(28);
+    }
+
+    //rule 30:
+    let rule30 = true;
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(faceCardValues.includes(player.hand.cardValues[i])) {
+        rule30 = false;
+        break;
+      } else {
+        if(parseInt(player.hand.cardValues[i]) % 2 != 0){
+          rule30 = false;
+          break;
+        }
+      }
+    }
+    if(rule30) {
+      player.hand.bonusPoints += 15;
+      player.hand.bonusPointsRules.push(30);
+    }
+
+    //rule 32:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardValues[i] == "A" && player.hand.cardSuits == "S") {
+        player.hand.cards[i].points = -7;
+        player.hand.cards[i].rules.push(32);
+      }
+    }
+
+    //rule 33:
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardValues[i] == "K") {
+        let suitToMatch = player.hand.cardSuits[i];
+        for(j = 0; j < player.hand.cards.length; j++) {
+          if(player.hand.cardValues[j] == "Q" && player.hand.cardSuits[j] == suitToMatch) {
+            player.hand.bonusPoints += 7;
+            player.hand.bonusPointsRules.push(33);
+          }
+        }
+      }
+    }
+
+    //rule 34 (nothing to do with points)
+
+    //rule 35:
+    if(suitOccurrences["S"] == 1 && suitOccurrences["H"] == 1 && suitOccurrences["C"] == 1 && suitOccurrences["D"] == 1) {
+      player.hand.bonusPoints += 15;
+      player.hand.bonusPointsRules.push(35);
+    }
+
+    //rule 36:
+    if(blackCount == 0) {
+      player.hand.bonusPoints += -10;
+      player.hand.bonusPointsRules.push(36);
+    }
+
+    //rule 38: (flush)
+    if(suitOccurrences["S"] == 5 || suitOccurrences["H"] == 5 || suitOccurrences["C"] == 5 || suitOccurrences["D"] == 5) {
+      player.hand.bonusPoints += 20;
+      player.hand.bonusPointsRules.push(38);
+    }
+
+    //longest consecutive sequence
+  const LCS = (arr) => {
+    //get unique
+    arr = [...new Set(arr)];
+    arr = arr.map(x => {
+      return parseInt(x);
+    })
+    const badIndex = arr.indexOf(NaN);
+    if(badIndex > -1) {
+      arr.splice(badIndex, 1);
+    }
+
+    //sort
+    arr = arr.sort((a,b) => a - b);
+  
+    let max = 0;
+    let count = 0;
+    // find the maximum length
+    // by traversing the array
+    for (let i = 0; i < arr.length; i++) {
+      // check if the current element is
+      // equal to previous element +1
+      if (i > 0 && arr[i] === arr[i - 1] + 1){
+        count++;
+      }
+      else{
+        count = 1;
+      }
+      // Update the maximum
+      max = Math.max(max, count);
+    }
+    
+    return max;
+  }
+
+    //rule 39: (straight)
+    if(LCS(allCardValues) == 5) {
+      player.hand.bonusPoints += 25;
+      player.hand.bonusPointsRules.push(39);
+    }
+
   }
 
   function getStandingsHeader() {
@@ -130,6 +376,13 @@ $(document).ready(function() {
   function Hand(cards) {
     this.cards = cards;
     this.bonusPoints = 0;
+    this.bonusPointsRules =[];
+    this.cardValues = [];
+    this.cardSuits = [];
+    cards.forEach(card => {
+      this.cardValues.push(card.cardValue);
+      this.cardSuits.push(card.suit);
+    });
   }
   
   Hand.prototype.getBasePoints = function() {
@@ -158,7 +411,7 @@ $(document).ready(function() {
     this.hand.cards.forEach(card => {
       htmlString += card.getHtmlString();
     });
-    htmlString += `</div><div class="playerBasePoints">${this.hand.getBasePoints()}</div><div class="playerBonusPoints">${this.hand.bonusPoints}</div><div class="playerTotalPoints">${this.hand.getTotalPoints()}</div></div>`
+    htmlString += `</div><div class="playerBasePoints">${this.hand.getBasePoints()}</div><div class="playerBonusPoints" title="Rules:${this.hand.bonusPointsRules}">${this.hand.bonusPoints}</div><div class="playerTotalPoints">${this.hand.getTotalPoints()}</div></div>`
     return htmlString;
   }
 
