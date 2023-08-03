@@ -92,13 +92,9 @@ $(document).ready(function() {
 
   function calculateScore(player) {
 
-    const valueOccurrences = player.hand.cardValues.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
+    const valueOccurrences = player.hand.cardValues.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
 
-    const suitOccurrences = player.hand.cardSuits.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
+    const suitOccurrences = player.hand.cardSuits.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
     
     //rule 4 (nothing to do with points)
 
@@ -117,7 +113,7 @@ $(document).ready(function() {
     //rule 9 (nothing to do with points)
 
     //rule 10:
-    if (valueOccurrences.values().includes(4)) {
+    if ([...valueOccurrences.values()].includes(4)) {
       player.hand.bonusPoints += 25;
       player.hand.bonusPointsRules.push(10);
     }
@@ -131,15 +127,15 @@ $(document).ready(function() {
     }
 
     //rule 14:
-    let blackCount = suitOccurrences["C"] ? suitOccurrences["C"] : 0 + suitOccurrences["S"] ? suitOccurrences["S"] : 0;
-    let redCount = suitOccurrences["D"] ? suitOccurrences["D"] : 0 + suitOccurrences["H"] ? suitOccurrences["H"] : 0;
+    let blackCount = suitOccurrences.get("C") ? suitOccurrences.get("C") : 0 + suitOccurrences.get("S") ? suitOccurrences.get("S") : 0;
+    let redCount = suitOccurrences.get("D") ? suitOccurrences.get("D") : 0 + suitOccurrences.get("H") ? suitOccurrences.get("H") : 0;
     if(blackCount == redCount) {
       player.hand.bonusPoints += 10;
       player.hand.bonusPointsRules.push(14);
     }
 
     //rule 15:
-    if(valueOccurrences.values().includes(2)) {
+    if([...valueOccurrences.values()].includes(2)) {
       for(i = 0; i < player.hand.cards.length; i++) {
         if(player.hand.cardValues[i] == "2" && player.hand.cardSuits[i] == "D") {
           player.hand.cards[i].points = 7;
@@ -203,7 +199,7 @@ $(document).ready(function() {
     }
 
     //rule 25:
-    if(suitOccurrences["H"] == 2 || suitOccurrences["H"] == 4) {
+    if(suitOccurrences.get("H") == 2 || suitOccurrences.get("H") == 4) {
       for(i = 0; i < player.hand.cards.length; i++) {
         if(player.hand.cardSuits[i] == "H") {
           if(numberCardValues.includes(player.hand.cardValues[i])) {
@@ -215,7 +211,7 @@ $(document).ready(function() {
     }
 
     //rule 26:
-    if(suitOccurrences["C"] == 3) {
+    if(suitOccurrences.get("C") == 3) {
       for(i = 0; i < player.hand.cards.length; i++) {
         if(player.hand.cardSuits[i] == "C") {
           if(numberCardValues.includes(player.hand.cardValues[i])) {
@@ -227,13 +223,13 @@ $(document).ready(function() {
     }
 
     //rule 27:
-    if(suitOccurrences["S"] == 1) {
+    if(suitOccurrences.get("S") == 1) {
       player.hand.bonusPoints += 3;
       player.hand.bonusPointsRules.push(27);
     }
 
     //rule 28:
-    if(valueOccurrences.values().includes(3)) {
+    if([...valueOccurrences.values()].includes(3)) {
       player.hand.bonusPoints += 10;
       player.hand.bonusPointsRules.push(28);
     }
@@ -280,7 +276,7 @@ $(document).ready(function() {
     //rule 34 (nothing to do with points)
 
     //rule 35:
-    if(suitOccurrences["S"] == 1 && suitOccurrences["H"] == 1 && suitOccurrences["C"] == 1 && suitOccurrences["D"] == 1) {
+    if(suitOccurrences.get("S") == 1 && suitOccurrences.get("H") == 1 && suitOccurrences.get("C") == 1 && suitOccurrences.get("D") == 1) {
       player.hand.bonusPoints += 15;
       player.hand.bonusPointsRules.push(35);
     }
@@ -292,48 +288,48 @@ $(document).ready(function() {
     }
 
     //rule 38: (flush)
-    if(suitOccurrences["S"] == 5 || suitOccurrences["H"] == 5 || suitOccurrences["C"] == 5 || suitOccurrences["D"] == 5) {
+    if(suitOccurrences.get("S") == 5 || suitOccurrences.get("H") == 5 || suitOccurrences.get("C") == 5 || suitOccurrences.get("D") == 5) {
       player.hand.bonusPoints += 20;
       player.hand.bonusPointsRules.push(38);
     }
 
     //longest consecutive sequence
-  const LCS = (arr) => {
-    //get unique
-    arr = [...new Set(arr)];
-    arr = arr.map(x => {
-      return parseInt(x);
-    })
-    const badIndex = arr.indexOf(NaN);
-    if(badIndex > -1) {
-      arr.splice(badIndex, 1);
-    }
+    const LCS = (arr) => {
+      //get unique
+      arr = [...new Set(arr)];
+      arr = arr.map(x => {
+        return parseInt(x);
+      })
+      const badIndex = arr.indexOf(NaN);
+      if(badIndex > -1) {
+        arr.splice(badIndex, 1);
+      }
 
-    //sort
-    arr = arr.sort((a,b) => a - b);
-  
-    let max = 0;
-    let count = 0;
-    // find the maximum length
-    // by traversing the array
-    for (let i = 0; i < arr.length; i++) {
-      // check if the current element is
-      // equal to previous element +1
-      if (i > 0 && arr[i] === arr[i - 1] + 1){
-        count++;
-      }
-      else{
-        count = 1;
-      }
-      // Update the maximum
-      max = Math.max(max, count);
-    }
+      //sort
+      arr = arr.sort((a,b) => a - b);
     
-    return max;
-  }
+      let max = 0;
+      let count = 0;
+      // find the maximum length
+      // by traversing the array
+      for (let i = 0; i < arr.length; i++) {
+        // check if the current element is
+        // equal to previous element +1
+        if (i > 0 && arr[i] === arr[i - 1] + 1){
+          count++;
+        }
+        else{
+          count = 1;
+        }
+        // Update the maximum
+        max = Math.max(max, count);
+      }
+      
+      return max;
+    }
 
     //rule 39: (straight)
-    if(LCS(allCardValues) == 5) {
+    if(LCS([...valueOccurrences.keys()]) == 5) {
       player.hand.bonusPoints += 25;
       player.hand.bonusPointsRules.push(39);
     }
