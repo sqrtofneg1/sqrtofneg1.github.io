@@ -135,12 +135,10 @@ $(document).ready(function() {
     }
 
     //rule 15:
-    if([...valueOccurrences.values()].includes(2)) {
-      for(i = 0; i < player.hand.cards.length; i++) {
-        if(player.hand.cardValues[i] == "2" && player.hand.cardSuits[i] == "D") {
-          player.hand.cards[i].points = 7;
-          player.hand.cards[i].rules.push(15);
-        }
+    for(i = 0; i < player.hand.cards.length; i++) {
+      if(player.hand.cardValues[i] == "2" && player.hand.cardSuits[i] == "D") {
+        player.hand.cards[i].points = 7;
+        player.hand.cards[i].rules.push(15);
       }
     }
 
