@@ -348,7 +348,7 @@ $(document).ready(function() {
   }
 
   function sortPlayers() {
-    allPlayers.sort((a, b) => (a.getTotalPoints() > b.getTotalPoints()) ? 1 : (a.getTotalPoints() == b.getTotalPoints()) ? ((a.name > b.name) ? 1 : -1) : -1);
+    allPlayers.sort((a, b) => (a.getTotalPoints() < b.getTotalPoints()) ? 1 : (a.getTotalPoints() == b.getTotalPoints()) ? ((a.name < b.name) ? 1 : -1) : -1);
   }
   
   function Card(cardValue = null, suit = null) {
